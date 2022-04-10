@@ -4,8 +4,10 @@ import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Inventory from './components/Inventory/Inventory';
+import Login from './components/Login/Login';
 import Orders from './components/Orders/Orders';
 import Shop from './components/Shop/Shop';
+import Signup from './components/Signup/Signup';
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
         <Route path='/inventory' element={<Inventory></Inventory>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/order' element={<Orders></Orders>}></Route>
+
+
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<Signup></Signup>}></Route>
       </Routes>
 
     </div>
