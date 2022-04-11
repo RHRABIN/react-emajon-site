@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-
+import google from '../../images/google.png'
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const [signInWithGoogle] = useSignInWithGoogle(auth)
 
     const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate()
@@ -24,8 +25,9 @@ const Signup = () => {
     if (user) {
         navigate('/shop')
     }
-    console.log(user, email, password)
-
+    const handleGoogleSignup = () => {
+        signInWithGoogle()
+    }
     //create user by click
     const handleCreateUser = (event) => {
         event.preventDefault();
@@ -50,7 +52,7 @@ const Signup = () => {
 
             <div className="form-container">
                 <div>
-                    <h2 className='form-title'>Login</h2>
+                    <h2 className='form-title'>Sign up</h2>
                     <form onSubmit={handleCreateUser}>
                         <div className="input-group">
                             <label htmlFor="">Email</label>
@@ -66,14 +68,14 @@ const Signup = () => {
                         </div>
                         <p style={{ color: 'red' }}>{error}</p>
                         <input className='submit-button' type="submit" value="Sign up" />
-                        <p>Already have an account? <Link className='form-link' to='/login' >Login</Link> </p>
+                        <div className="link"><p>Already have an account? <Link className='form-link' to='/login' >Login</Link> </p></div>
                     </form>
                     <div className='underline'>
                         <div>____________</div>
                         <p>&emsp; or &emsp; </p>
                         <div>____________</div>
                     </div>
-                    <button className='google-button'>Continue with Google</button>
+                    <button onClick={handleGoogleSignup} className='google-button'><img src={google} alt="" /><span>Continue with Google</span></button>
                 </div>
             </div>
         </div>

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import './Login.css'
+import google from '../../images/google.png'
 const Login = () => {
+    //require locarion
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+    const navigate = useNavigate()
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [
@@ -13,21 +19,26 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const navigate = useNavigate()
+
 
     const handlePasswordBlur = (event) => {
         setPassword(event.target.value)
     }
     if (user) {
-        navigate('/shop')
+        navigate(from)
     }
 
     const handleEmailBlur = (event) => {
         setEmail(event.target.value)
     }
+    const handleTosignInGoogle = () => {
+        signInWithGoogle()
+
+    }
     const handleSignIn = (event) => {
         event.preventDefault();
         signInWithEmailAndPassword(email, password)
+
 
     }
 
@@ -50,14 +61,16 @@ const Login = () => {
                         <p>{error?.message}</p>
                         {loading && <p>Loading...</p>}
                         <input className='submit-button' type="submit" value="Login" />
-                        <p>New to Ema-John? <Link className='form-link' to='/signup' >Create an account</Link> </p>
+                        <div className="link">
+                            <p>New to Ema-John? <Link className='form-link' to='/signup' >Create an account</Link> </p>
+                        </div>
                     </form>
                     <div className='underline'>
                         <div>____________ </div>
                         <p>&emsp;or&emsp;</p>
                         <div> ____________</div>
                     </div>
-                    <button className='google-button'>Continue with Google</button>
+                    <button onClick={handleTosignInGoogle} className='google-button'><img src={google} alt="" /><span>Continue with Google</span></button>
                 </div>
             </div>
 

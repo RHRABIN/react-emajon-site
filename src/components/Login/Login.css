@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 
 }
 
@@ -16,6 +17,8 @@
     font-weight: 400;
     font-size: 35px;
     color: #2A414F;
+    display: flex;
+    justify-content: center;
 }
 
 .input-group label {
@@ -61,6 +64,12 @@
     justify-content: center;
 }
 
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .google-button {
     width: 415px;
     height: 55px;
@@ -69,8 +78,17 @@
     border-radius: 5px;
     margin-bottom: 5px;
     color: #2A414F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .google-button:hover {
     background-color: #f1dfdf;
+}
+
+.google-button img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
