@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 
 }
 
@@ -52,4 +53,24 @@
 .form-link {
     color: #FF9900;
     text-decoration: none;
+}
+
+.underline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-button {
+    width: 415px;
+    height: 55px;
+    background-color: #FFFFFF;
+    font-size: 17px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #2A414F;
+}
+
+.google-button:hover {
+    background-color: #f1dfdf;
 }
